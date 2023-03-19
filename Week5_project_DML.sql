@@ -170,4 +170,3 @@ $$;
 CALL add_invoice('2022-11-23 ',25000.00, 1, 1, 1);
 CALL add_invoice('2022-11-23 ',12000.00, 2, 2, 2);
 
-SELECT *FROM invoice;
