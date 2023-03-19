@@ -14,6 +14,7 @@ $$;
 
 CALL add_new_salesperson ('Juvie', 'theGreat','4@gmail.com','8883838383');
 CALL add_new_salesperson ('Olivia', 'Johnson','OJdid_it@yahoo.com','888-111-2340');
+
 ---------------------------------------------------------------------
 
 CREATE OR REPLACE PROCEDURE add_customer(
@@ -42,7 +43,6 @@ CALL add_customer('Sarah','Parker','123-555-9090','sparker_jane@gmail.com','n/a'
 INSERT INTO customer(first_name, last_name, phone, email, address, new_customer) 
 VALUES ('Travez', 'Adams', '333-333-4444','twash2012@yahoo.com','201 Gayton St.',TRUE);
 
-SELECT * FROM customer;
 -----------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE add_car_sale(
   year INT, 
@@ -86,8 +86,6 @@ $$;
 CALL serviced_vehicle(TRUE,2012, 'Toyaota', 'Tundra', 'Blue','used', 3);
 CALL serviced_vehicle(TRUE,2019, 'Chevy', 'Impala', 'Gray','used', 4);
 
-SELECT * FROM car;
-
 -----------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE add_service_ticket(
   description VARCHAR(150),
@@ -102,15 +100,13 @@ BEGIN
   VALUES (description, solution, car_id, last_update);
 END;
 $$;
-
+-- Explicit type cast --  
 CALL add_service_ticket('oil_change'::VARCHAR, 'changed'::VARCHAR, 3::INT, now()::TIMESTAMP);
 
 INSERT INTO service_ticket (description, solution, car_id,last_update)
 VALUES('alternator', 'replaced', 4, now());
 
-SELECT * FROM service_ticket; 
 -----------------------------------------------------------------
-
 INSERT INTO mechanic (first_name, last_name, phone, expertise)
 VALUES('Bob', 'Barker','123-654-3210','motor');
 
@@ -119,8 +115,6 @@ VALUES('Joel', 'Riser','123-875-9076','jrkingdom@yahoo.com','alternators');
 
 INSERT INTO mechanic (first_name, last_name, phone, email, expertise)
 VALUES('Markus', 'Yarbrough','123-456-3256','yarbroughm@aol.com','electical');
-
-SELECT * FROM mechanic;
 
 -----------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE add_service_history(
@@ -140,9 +134,7 @@ $$;
 CALL add_service_history('2022-12-17 ', 'oil_change', 50.90, 3);
 CALL add_service_history('2023-03-19 ', 'alternator_repair', 450.00, 4);
 
-SELECT * FROM service_history ;
 -----------------------------------------------------------------
-
 CREATE OR REPLACE PROCEDURE add_maintenance(
   mechanic_id INT, 
   ticket_id INT,
@@ -159,9 +151,7 @@ $$;
 CALL add_maintenance(1, 1, 3);
 CALL add_maintenance(2, 2, 4);
 
-SELECT * FROM maintenance;
 -----------------------------------------------------------------
-
 CREATE OR REPLACE PROCEDURE add_invoice(
   date TIMESTAMP, 
   amount NUMERIC(6,2),
